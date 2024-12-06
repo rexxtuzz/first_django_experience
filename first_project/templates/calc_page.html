@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор</title>
+</head>
+<body>
+    <h1>Курс "Промышленное программирование"</h1>
+    <h2>Калькулятор</h2>
+    <input placeholder="первое число" type="number" id="x"/>
+    <p>+</p>
+    <input placeholder="второе число" type="number" id="y"/>
+    <button onclick="calc()">=</button>
+    <p id="result"></p>
+    <script>
+        function calc(){
+            var x = Number(document.getElementById("x").value);
+            var y = Number(document.getElementById("y").value);
+            var result = x + y;
+
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+</body>
+</html>
