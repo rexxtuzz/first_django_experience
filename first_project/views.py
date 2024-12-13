@@ -1,3 +1,5 @@
+import random
+
 from django.shortcuts import render
 import datetime
 
@@ -18,3 +20,24 @@ def time_page(request):
 
 def calc_page(request):
     return render(request, "calc_page.html")
+
+
+def expression_page(request):
+    n = random.randint(2, 4)
+    operations = list(random.choice(["-", "+"]) for i in range(0, n - 1))
+    nums = list(random.randint(10, 100) for i in range(0, n))
+    operation = ""
+    for i in range(0, n):
+        operation += str(nums[i])
+        try:
+            operation += operations[i]
+        except IndexError:
+            pass
+    answer = eval(operation)
+
+    context = {
+        "operation": operation,
+        "answer": answer
+    }
+
+    return render(request, "expression_page.html", context)
