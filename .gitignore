@@ -1,3 +1,5 @@
 venv
 .idea
 __pycache__/
+first_project/migrations
+db.sqlite3

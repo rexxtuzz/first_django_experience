@@ -2,13 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Django</title>
+    <title>Expressions history</title>
 </head>
 <body>
-    <h1 align="center">Курс "Промышленное программирование"</h1>
-    <p align="center">Автор - {{name}}</p>
-    <p align="center">Кол-во страниц: {{pages_count}}</p>
-    <h1></h1>
+    <table border="1px">
+        <tr>
+            <th>Выражение</th>
+            <th>Ответ</th>
+        </tr>
+        {% for item in expression_history %}
+        <tr>
+            <td> {{ item.expression }}</td>
+            <td> {{ item.answer }}</td>
+        </tr>
+        {% endfor %}
+    </table>
     <ul>
         <li><a href="http://127.0.0.1:8000/">Главная</a>.</li>
         <li><a href="http://127.0.0.1:8000/time/">Текущее время</a>.</li>

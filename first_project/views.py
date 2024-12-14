@@ -2,11 +2,12 @@ import random
 
 from django.shortcuts import render
 import datetime
+from first_project.models import ExpressionHistory
 
 
 def index_page(request):
     context = {"name": "Влад Рассоха",
-               "pages_count": 2}
+               "pages_count": 5}
 
     return render(request, "index_page.html", context)
 
@@ -40,4 +41,18 @@ def expression_page(request):
         "answer": answer
     }
 
+    expression_history = ExpressionHistory(
+        expression=operation,
+        answer=answer
+    )
+    expression_history.save()
+
     return render(request, "expression_page.html", context)
+
+
+def history_page(request):
+    expression_history = ExpressionHistory.objects.all()
+    context = {
+        "expression_history": expression_history
+    }
+    return render(request, "history_page.html", context)
