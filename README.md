@@ -6,3 +6,4 @@
 
 `python manage.py makemigrations first_project`
 `python manage.py migrate first_project`
+
