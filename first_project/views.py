@@ -76,6 +76,8 @@ def new_expression(request):
         operation = str(operation)
         operation = operation.replace('plus', '+')
         operation = operation.replace('minus', '-')
+        if operation == "":
+            operation = "Нет выражения"
 
         print(operation)
 
@@ -98,7 +100,6 @@ def new_expression(request):
             answer=answer
         )
         expression_history.save()
-
         return render(request, "new_page.html", context)
 
     else:
