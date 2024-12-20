@@ -79,24 +79,30 @@ def new_expression(request):
 
         print(operation)
 
-    try:
-        answer = eval(operation)
+        try:
+            answer = eval(operation)
 
-    except SyntaxError:
+        except SyntaxError:
+            context = {
+                "operation": operation
+            }
+            return render(request, "new_wrong.html", context)
+
         context = {
-            "operation": operation
+            "operation": operation,
+            "answer": answer
+        }
+
+        expression_history = ExpressionHistory(
+            expression=operation,
+            answer=answer
+        )
+        expression_history.save()
+
+        return render(request, "new_page.html", context)
+
+    else:
+        context = {
+            "operation": 'Нет выражения'
         }
         return render(request, "new_wrong.html", context)
-
-    context = {
-        "operation": operation,
-        "answer": answer
-    }
-
-    expression_history = ExpressionHistory(
-        expression=operation,
-        answer=answer
-    )
-    expression_history.save()
-
-    return render(request, "new_page.html", context)
