@@ -7,7 +7,7 @@ from first_project.models import ExpressionHistory
 
 def index_page(request):
     context = {"name": "Влад Рассоха",
-               "pages_count": 5}
+               "pages_count": 8}
 
     return render(request, "index_page.html", context)
 
@@ -56,3 +56,47 @@ def history_page(request):
         "expression_history": expression_history
     }
     return render(request, "history_page.html", context)
+
+
+def delete_page(request):
+    expression_last = ExpressionHistory.objects.last()
+    expression_last.delete()
+    return render(request, "delete_page.html")
+
+
+def clear_page(request):
+    expression_history = ExpressionHistory.objects.all()
+    expression_history.delete()
+    return render(request, "clear_page.html")
+
+
+def new_expression(request):
+    if "operation" in request.GET:
+        operation = request.GET["operation"]
+        operation = str(operation)
+        operation = operation.replace('plus', '+')
+        operation = operation.replace('minus', '-')
+
+        print(operation)
+
+    try:
+        answer = eval(operation)
+
+    except SyntaxError:
+        context = {
+            "operation": operation
+        }
+        return render(request, "new_wrong.html", context)
+
+    context = {
+        "operation": operation,
+        "answer": answer
+    }
+
+    expression_history = ExpressionHistory(
+        expression=operation,
+        answer=answer
+    )
+    expression_history.save()
+
+    return render(request, "new_page.html", context)
