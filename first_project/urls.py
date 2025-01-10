@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from first_project.views import index_page, time_page, calc_page, expression_page, history_page, delete_page, clear_page, new_expression
+
+from django.contrib.auth import views as auth_views
+
+from first_project.views import (index_page, time_page, calc_page,
+                                 expression_page, history_page, delete_page,
+                                 clear_page, new_expression, str2words, logout_view, str_history)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,5 +32,9 @@ urlpatterns = [
     path('history/', history_page),
     path('delete/', delete_page),
     path('clear/', clear_page),
-    path('new/', new_expression)
+    path('new/', new_expression),
+    path('str2words/', str2words),
+    path('str_history/', str_history),
+    path('login/', auth_views.LoginView.as_view()),
+    path('logout/', logout_view)
 ]

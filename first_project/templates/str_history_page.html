@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Str history page</title>
+</head>
+<body>
+    {% include "menu.html" %}
+    <h1> {{ username }}, ваши строки: </h1>
+    <table border="1px">
+        <tr>
+            <th>Строка</th>
+            <th>Слова</th>
+            <th>Числа</th>
+            <th>Время</th>
+            <th>Дата</th>
+        </tr>
+        {% for item in str_history %}
+        <tr>
+            <td> {{ item.str }}</td>
+            <td> {{ item.words_count }}</td>
+            <td> {{ item.nums_count }}</td>
+            <td> {{ item.time }}</td>
+            <td> {{ item.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

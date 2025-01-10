@@ -1,8 +1,18 @@
 import random
+from datetime import datetime
+from typing import Any
 
-from django.shortcuts import render
 import datetime
-from first_project.models import ExpressionHistory
+from first_project.models import ExpressionHistory, StrHistory
+from first_project.forms import StrForm
+
+
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
+
+from django.contrib.auth import authenticate
 
 
 def index_page(request):
@@ -107,3 +117,70 @@ def new_expression(request):
             "operation": 'Нет выражения'
         }
         return render(request, "new_wrong.html", context)
+
+
+@login_required
+def str2words(request):
+    if request.method == "POST":
+        str_form = StrForm(request.POST)
+        if str_form.is_valid():
+            text = str_form.cleaned_data["text"]
+            words = text.split()
+            words_count = len(words)
+            nums = []
+            for word in words:
+                if word.isdigit():
+                    nums.append(word)
+            nums_count = len(nums)
+
+            #сохраняем в бд
+
+            str_history = StrHistory(
+                str=text,
+                words_count=words_count,
+                nums_count=nums_count,
+                time=datetime.datetime.now().strftime("%H:%M:%S"),
+                date=datetime.date.today().strftime("%d/%m/%Y"),
+                author=request.user
+            )
+            str_history.save()
+            print(datetime.datetime.now().strftime("%H:%M"), datetime.date.today().strftime("%d/%m/%Y"))
+
+        else:
+            str_form = StrForm(request.POST)
+            words = []
+            words_count = 0
+            nums = []
+            nums_count = 0
+
+    else:
+        str_form = StrForm(request.POST)
+        words = []
+        words_count = 0
+        nums = []
+        nums_count = 0
+
+    context = {
+        "words": words,
+        "words_count": words_count,
+        "nums": nums,
+        "nums_count": nums_count,
+        "str_form": str_form
+    }
+    return render(request, "str2words.html", context)
+
+
+@login_required
+def str_history(request):
+    str_history = StrHistory.objects.filter(author_id=request.user.id)
+    context = {
+        "username": request.user.username,
+        "user_id": request.user.id,
+        "str_history": str_history
+    }
+    return render(request, "str_history_page.html", context)
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')

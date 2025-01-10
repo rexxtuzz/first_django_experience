@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>str2words</title>
+</head>
+<body>
+    {% include "menu.html" %}
+    <form method="POST" action="/str2words/">
+        {% csrf_token %}
+        <div>
+            {{ str_form.text.label }}
+        </div>
+        <div>
+            {{ str_form.text }}
+        </div>
+        <div>
+        <input type="submit" value="Отправить строку">
+        </div>
+
+
+    </form>
+    <table border="1px">
+        <tr>
+            <th>Колво слов</th>
+            <th>Колво чисел</th>
+        </tr>
+        <tr>
+            <td> {{ words_count }}</td>
+            <td> {{ nums_count }}</td>
+        </tr>
+    </table>
+
+    <h1>Слова:</h1>
+    <ul>
+        {% for i in words %}
+        <li>{{ i }}</li>
+        {% endfor %}
+    </ul>
+    <h1>Числа:</h1>
+    <ul>
+        {% for i in nums %}
+        <li>{{ i }}</li>
+        {% endfor %}
+    </ul>
+
+    <div>
+    <a href='http://127.0.0.1:8000/logout'>Выйти</a>
+    </div>
+</body>
+</html>

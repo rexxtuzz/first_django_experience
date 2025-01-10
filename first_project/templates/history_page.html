@@ -5,6 +5,7 @@
     <title>Expressions history</title>
 </head>
 <body>
+    {% include "menu.html" %}
     <table border="1px">
         <tr>
             <th>Выражение</th>
@@ -17,15 +18,5 @@
         </tr>
         {% endfor %}
     </table>
-    <ul>
-        <li><a href="http://127.0.0.1:8000/">Главная</a>.</li>
-        <li><a href="http://127.0.0.1:8000/time/">Текущее время</a>.</li>
-        <li><a href="http://127.0.0.1:8000/calc/">Калькулятор</a>.</li>
-        <li><a href="http://127.0.0.1:8000/expression/">Арифметическое выражение</a>.</li>
-        <li><a href="http://127.0.0.1:8000/history/">История арифметических выражений</a>.</li>
-        <li><a href="http://127.0.0.1:8000/delete/">Удалить последнее выражние</a>.</li>
-        <li><a href="http://127.0.0.1:8000/clear/">Сбросить таблицу</a>.</li>
-        <li><p>Для создания своего выржаение перейдите по /new/?operation=(ваша операция)</p></li>
-    </ul>
 </body>
 </html>
