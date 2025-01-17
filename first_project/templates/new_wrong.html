@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Ошибка!</title>
-</head>
-<body>
-    {% include "menu.html" %}
+{% extends "base.html" %}
+
+{% block title %}Ошибка!{% endblock %}
+
+{% block content %}
     <h1>Введите корректно числовое выражение, чтобы это сработало. Наприпер: 2plus2, 15minus7. Ваше выражение: {{ operation }}</h1>
-</body>
-</html>
+{% endblock %}

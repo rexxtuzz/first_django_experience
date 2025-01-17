@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Expression</title>
-</head>
-<body>
-    {% include "menu.html" %}
+{% extends "base.html" %}
+
+{% block title %}Expression page{% endblock %}
+
+{% block content %}
     <h1>{{ operation }}={{ answer }}</h1>
-</body>
-</html>
+{% endblock %}

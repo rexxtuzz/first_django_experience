@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Str history page</title>
-</head>
-<body>
-    {% include "menu.html" %}
+{% extends "base.html" %}
+
+{% block title %}История строк{% endblock %}
+
+{% block content %}
     <h1> {{ username }}, ваши строки: </h1>
     <table border="1px">
         <tr>
@@ -25,5 +22,4 @@
         </tr>
         {% endfor %}
     </table>
-</body>
-</html>
+{% endblock %}

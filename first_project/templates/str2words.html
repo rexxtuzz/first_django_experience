@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>str2words</title>
-</head>
-<body>
-    {% include "menu.html" %}
+{% extends "base.html" %}
+
+{% block title %}str2words{% endblock %}
+
+{% block content %}
     <form method="POST" action="/str2words/">
         {% csrf_token %}
         <div>
@@ -47,5 +44,4 @@
     <div>
     <a href='http://127.0.0.1:8000/logout'>Выйти</a>
     </div>
-</body>
-</html>
+{% endblock %}

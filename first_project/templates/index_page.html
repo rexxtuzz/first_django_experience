@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Django</title>
-</head>
-<body>
-    {% include "menu.html" %}
+{% extends "base.html" %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
     <h1 align="center">Курс "Промышленное программирование"</h1>
     <p align="center">Автор - {{name}}</p>
     <p align="center">Кол-во страниц: {{pages_count}}</p>
     <h1>для создания новой операции перейдите по /new/?operation=[ваша операция]</h1>
-</body>
-</html>
+{% endblock %}

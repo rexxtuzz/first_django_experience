@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Калькулятор</title>
-</head>
-<body>
-    {% include "menu.html" %}
-    <h1>Курс "Промышленное программирование"</h1>
-    <h2>Калькулятор</h2>
+{% extends "base.html" %}
+
+{% block title %}Калькулятор{% endblock %}
+
+{% block content %}
     <input placeholder="первое число" type="number" id="x"/>
     <p>+</p>
     <input placeholder="второе число" type="number" id="y"/>
@@ -22,5 +17,4 @@
             document.getElementById("result").innerHTML = result;
         }
     </script>
-</body>
-</html>
+{% endblock %}
