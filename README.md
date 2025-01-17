@@ -10,3 +10,7 @@
 
 `python manage.py migrate first_project`
 
+
+## вход в юзера:
+`username - vasya`
+`password - promrpog`
